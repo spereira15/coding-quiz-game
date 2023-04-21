@@ -128,3 +128,40 @@ quizScreen.addEventListener("click", function (e) {
     displayQuestion();
   }
 });
+
+var highScores = [];
+
+function addScore() {
+    var playerName = document.getElementById("playerName").value;
+    var currentScore = timeLeft;
+  
+    highScores.push({
+      name: playerName,
+      score: currentScore
+    });
+  
+    highScores.sort(function(a, b) {
+      return b.score - a.score;
+    });
+  
+    var table = document.getElementById("scoreTable");
+    table.innerHTML = "";
+  
+    highScores.forEach(function(score) {
+      var row = table.insertRow(-1);
+      var nameCell = row.insertCell(0);
+      var scoreCell = row.insertCell(1);
+      nameCell.innerHTML = score.name;
+      scoreCell.innerHTML = score.score;
+    });
+  }
+
+var submitBtn = document.querySelector("#submitBtn");
+var finalScreen = document.querySelector("#finalScreen")
+
+submitBtn.addEventListener("click", function() {
+  addScore();
+
+  finalScreen.style.display = "block"
+  scoreScreen.style.display = "none"
+});
