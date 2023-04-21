@@ -8,48 +8,50 @@ var choice2 = document.querySelector("#option2");
 var choice3 = document.querySelector("#option3");
 var choice4 = document.querySelector("#option4");
 
+var questionOption = document.querySelector(".questionOption");
+
 var questionPool = [
   {
-    question: "Question 1",
-    option1: "Example 1.1",
-    option2: "Example 1.2",
-    option3: "Example 1.3",
-    option4: "Example 1.4",
+    question: "Inside which HTML element do we put the JavaScript?",
+    option1: "<javascript>",
+    option2: "<script>",
+    option3: "<js>",
+    option4: "<scripting>",
   },
   {
-    question: "Question 2",
-    option1: "Example 2.1",
-    option2: "Example 2.2",
-    option3: "Example 2.3",
-    option4: "Example 2.4",
+    question: "Where is the correct place to insert a JavaScript?",
+    option1: "In the <body> element",
+    option2: "In the <head> element",
+    option3: "Both are correct",
+    option4: "Both are wrong",
   },
   {
-    question: "Question 3",
-    option1: "Example 3.1",
-    option2: "Example 3.2",
-    option3: "Example 3.3",
-    option4: "Example 3.4",
+    question: "How do you create a function in JavaScript?",
+    option1: "function:myFunction()",
+    option2: "function myFunction()",
+    option3: "function = myFunction()",
+    option4: "myFunction() : function",
   },
   {
-    question: "Question 4",
-    option1: "Example 4.1",
-    option2: "Example 4.2",
-    option3: "Example 4.3",
-    option4: "Example 4.4",
+    question: "Using ___ statements is how you check for a specific condition.",
+    option1: "Select",
+    option2: "If",
+    option3: "Switch",
+    option4: "For",
   },
   {
-    question: "Question 5",
-    option1: "Example 5.1",
-    option2: "Example 5.2",
-    option3: "Example 5.3",
-    option4: "Example 5.4",
+    question: 'How would you log "Hello!" to the console?',
+    option1: 'console.log(hello)',
+    option2: 'console.log("Hello")',
+    option3: 'console.log("Hello!")',
+    option4: 'console.log(Hello!)',
   },
   {
-    question: "Question 6",
-    option1: "Example 6.1",
-    option2: "Example 6.2",
-    option3: "Example 6.3",
-    option4: "Example 6.4",
+    question: "Do you love pizza?",
+    option1: "No",
+    option2: "Not really",
+    option3: "Nah",
+    option4: "Obviously, who doesn't love pizza??",
   },
 ];
 
@@ -62,12 +64,26 @@ startBtn.addEventListener("click", function () {
   startBtn.style.display = "none";
   quizScreen.style.display = "block";
 
-  var randomIndex = randomNum(questionPool.length);
-  var randomQuestion = questionPool[randomIndex];
-
-  question.textContent = randomQuestion.question;
-  choice1.textContent = randomQuestion.option1;
-  choice2.textContent = randomQuestion.option2;
-  choice3.textContent = randomQuestion.option3;
-  choice4.textContent = randomQuestion.option4;
+  question.textContent = questionPool[0].question;
+  choice1.textContent = questionPool[0].option1;
+  choice2.textContent = questionPool[0].option2;
+  choice3.textContent = questionPool[0].option3;
+  choice4.textContent = questionPool[0].option4;
 });
+
+quizScreen.addEventListener("click", function(e) {
+    var optionChosen = e.target
+
+    if (optionChosen.textContent === "right answer") {
+        console.log("correct answer!")
+    } else {
+        console.log("wrong answer!")
+    }
+
+    question.textContent = questionPool[1].question;
+  choice1.textContent = questionPool[1].option1;
+  choice2.textContent = questionPool[1].option2;
+  choice3.textContent = questionPool[1].option3;
+  choice4.textContent = questionPool[1].option4;
+})
+
