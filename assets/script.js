@@ -1,5 +1,7 @@
+var startScreen = document.querySelector("#gameStart");
 var mainText = document.querySelector("#mainText");
 var startBtn = document.querySelector("#startBtn");
+
 var quizScreen = document.querySelector("#quiz");
 
 var question = document.querySelector("#question");
@@ -7,6 +9,8 @@ var choice1 = document.querySelector("#option1");
 var choice2 = document.querySelector("#option2");
 var choice3 = document.querySelector("#option3");
 var choice4 = document.querySelector("#option4");
+var prevAnswer = document.querySelector("#prevAnswer");
+var timer = document.querySelector("#timer");
 
 var questionOption = document.querySelector(".questionOption");
 
@@ -41,10 +45,10 @@ var questionPool = [
   },
   {
     question: 'How would you log "Hello!" to the console?',
-    option1: 'console.log(hello)',
+    option1: "console.log(hello)",
     option2: 'console.log("Hello")',
     option3: 'console.log("Hello!")',
-    option4: 'console.log(Hello!)',
+    option4: "console.log(Hello!)",
   },
   {
     question: "Do you love pizza?",
@@ -59,31 +63,52 @@ function randomNum(max) {
   return Math.floor(Math.random() * max);
 }
 
-startBtn.addEventListener("click", function () {
-  mainText.style.display = "none";
-  startBtn.style.display = "none";
-  quizScreen.style.display = "block";
+var timeLeft = 90;
 
-  question.textContent = questionPool[0].question;
-  choice1.textContent = questionPool[0].option1;
-  choice2.textContent = questionPool[0].option2;
-  choice3.textContent = questionPool[0].option3;
-  choice4.textContent = questionPool[0].option4;
-});
+// start quiz
+startBtn.addEventListener("click", function() {
+    timer.textContent = timeLeft;
+    var countDown = setInterval(function() {
+      timeLeft--;
+      timer.textContent = timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(countDown);
+      }
+    }, 1000);
+  
+    startScreen.style.display = "none";
+    quizScreen.style.display = "block";
+  
+    displayQuestion();
+  });
+
+var currentQuestionIndex = 0;
+
+function displayQuestion() {
+  var currentQuestion = questionPool[currentQuestionIndex];
+
+  question.textContent = currentQuestion.question;
+  choice1.textContent = currentQuestion.option1;
+  choice2.textContent = currentQuestion.option2;
+  choice3.textContent = currentQuestion.option3;
+  choice4.textContent = currentQuestion.option4;
+}
 
 quizScreen.addEventListener("click", function(e) {
-    var optionChosen = e.target
+  var optionChosen = e.target;
 
-    if (optionChosen.textContent === "right answer") {
-        console.log("correct answer!")
-    } else {
-        console.log("wrong answer!")
-    }
+  if (optionChosen.textContent === "<script>") {
+    prevAnswer.textContent = "Correct!";
+  } else {
+    prevAnswer.textContent = "Wrong!";
+    timeLeft -= 5;
+  }
 
-    question.textContent = questionPool[1].question;
-  choice1.textContent = questionPool[1].option1;
-  choice2.textContent = questionPool[1].option2;
-  choice3.textContent = questionPool[1].option3;
-  choice4.textContent = questionPool[1].option4;
-})
+  currentQuestionIndex++;
 
+  if (currentQuestionIndex >= questionPool.length) {
+    // quiz is over
+  } else {
+    displayQuestion();
+  }
+});
