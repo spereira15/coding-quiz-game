@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body>
-    <div id="gameStart">
+    <div id="gameStart" class="changingScreen">
         <h1 id="mainText">Coding Quiz Game!</h1>
         <p>You will have 90 seconds to complete the Quiz. Each wrong answer will substract 5 seconds. After you answer every question, your score will be equal to the time you had left!</p>
         <button id="startBtn">Start</button>
     </div>
-    <div id="quiz">
+    <div id="quiz" class="changingScreen">
         <h1 id="question"></h1>
         <button id="option1" class="questionOption"></button>
         <button id="option2" class="questionOption"></button>
@@ -21,13 +21,13 @@
         <p id="prevAnswer"></p>
         <p id="timer"></p>
     </div id="quiz">
-    <div id="scoreScreen">
+    <div id="scoreScreen" class="changingScreen">
         <h1>Congratulations!</h1>
         <p>You made it to the end of the quiz.</p>
         <h2 id="playerScore"></h2>
         <p>Type your name and submit your score!</p><input type="text" id="playerName"><input id="submitBtn" type="submit" value="Submit">
     </div>
-    <div id="finalScreen">
+    <div id="finalScreen" class="changingScreen">
         <h1>Thanks for playing!</h1>
     </div>
     <div id="highScores">

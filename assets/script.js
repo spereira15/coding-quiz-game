@@ -72,10 +72,10 @@ var timeLeft = 90;
 
 // start quiz
 startBtn.addEventListener("click", function () {
-  timer.textContent = timeLeft;
+  timer.textContent = "Time left: " + timeLeft;
   var countDown = setInterval(function () {
     timeLeft--;
-    timer.textContent = timeLeft;
+    timer.textContent = "Time left: " + timeLeft;
     if (timeLeft <= 0) {
       clearInterval(countDown);
     }
@@ -157,7 +157,7 @@ function addScore() {
   }
 
 var submitBtn = document.querySelector("#submitBtn");
-var finalScreen = document.querySelector("#finalScreen")
+var finalScreen = document.querySelector("#thankYou")
 
 submitBtn.addEventListener("click", function() {
   addScore();
